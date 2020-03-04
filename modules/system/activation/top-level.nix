@@ -548,7 +548,7 @@ in
             mkdir -p $out/darwin
             # cp -f $\{../../CHANGELOG} $out/darwin-changes
 
-            # ln -s $\{cfgSystem.build.etc}/etc $out/etc
+            ln -s ${cfgSystem.build.etc}/etc $out/etc
             # ln -s $\{cfgSystem.path} $out/sw
           
             ln -s ${config.home-files} $out/home-files
