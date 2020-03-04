@@ -172,6 +172,7 @@ let
     (loadModule ./system/boot/launchd.nix {})
     (loadModule ./services/databases/redis.nix {})
     (loadModule ./services/databases/postgresql.nix {})
+    (loadModule ./services/networking/privoxy.nix {})
   ];
 
   modules = map (getAttr "file") (filter (getAttr "condition") allModules);
