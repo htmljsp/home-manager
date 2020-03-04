@@ -201,12 +201,12 @@ function doSwitch() {
         doBuildAttr \
                     --out-link "$generation" \
                     activationPackage \
-            && "$generation/activate" || exitCode=1
+            && "$generation/activate-user" && sudo "$generation/activate" || exitCode=1
     else
         doBuildAttr \
                     --out-link "$generation" \
                     --attr activationPackage \
-            && "$generation/activate" || exitCode=1
+            && "$generation/activate-user" && sudo "$generation/activate" || exitCode=1
     fi
 
     presentNews "$newsInfo"

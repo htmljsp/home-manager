@@ -26,7 +26,7 @@ let
   };
 
   hmModulesDocs = nmd.buildModulesDocs {
-    modules = import ../modules/modules.nix {
+    modules = import ../modules/module-list.nix {
       inherit lib pkgs;
       check = false;
     } ++ [ scrubbedPkgsModule ];

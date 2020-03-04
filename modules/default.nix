@@ -22,7 +22,7 @@ let
   extendedLib = import ./lib/stdlib-extended.nix pkgs.lib;
 
   hmModules =
-    import ./modules.nix {
+    import ./module-list.nix {
       inherit check pkgs;
       lib = extendedLib;
     };
@@ -44,12 +44,16 @@ let
       else throw "\nFailed assertions:\n${failedStr}"
   );
 
+  eval = module ;
+
 in
 
 {
   inherit (module) options config;
 
-  activationPackage = module.config.home.activationPackage;
+  # activationPackage = module.config.home.activationPackage;
+  activationPackage = eval.config.system.build.toplevel;
+
 
   # For backwards compatibility. Please use activationPackage instead.
   activation-script = module.config.home.activationPackage;
@@ -59,4 +63,5 @@ in
     sort (a: b: a.time > b.time) (
       filter (a: a.condition) rawModule.config.news.entries
     );
+
 }

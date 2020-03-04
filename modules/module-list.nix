@@ -20,7 +20,6 @@ let
   allModules = [
     (loadModule ./accounts/email.nix { })
     (loadModule ./files.nix { })
-    (loadModule ./home-environment.nix { })
     (loadModule ./manual.nix { })
     (loadModule ./misc/dconf.nix { })
     (loadModule ./misc/fontconfig.nix { })
@@ -162,8 +161,16 @@ let
     (loadModule ./xcursor.nix { })
     (loadModule ./xresources.nix { })
     (loadModule ./xsession.nix { })
+
     (loadModule (pkgs.path + "/nixos/modules/misc/assertions.nix") { })
     (loadModule (pkgs.path + "/nixos/modules/misc/meta.nix") { })
+
+    (loadModule ./system/activation/top-level.nix {})
+    (loadModule ./system/activation/activation-script.nix {})
+    (loadModule ./system/etc/etc.nix {})
+    (loadModule ./system/boot/launchd-module/default.nix {})
+    (loadModule ./system/boot/launchd.nix {})
+    (loadModule ./services/databases/redis.nix {})
   ];
 
   modules = map (getAttr "file") (filter (getAttr "condition") allModules);
