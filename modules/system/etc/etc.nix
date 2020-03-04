@@ -44,7 +44,7 @@ in
       # Set up the statically computed bits of /etc.
       echo "setting up /etc..." >&2
       ln -sfn "$(readlink -f $systemConfig/etc)" /etc/static
-      for f in $(find /etc/static/* -type l); do
+      for f in $(find /etc/static/ -type l); do
         l=/etc/''${f#/etc/static/}
         d=''${l%/*}
         if [ ! -e "$d" ]; then
@@ -60,7 +60,7 @@ in
           ln -s "$f" "$l"
         fi
       done
-      for l in $(find /etc/* -type l 2> /dev/null); do
+      for l in $(find /etc/ -type l 2> /dev/null); do
         f="$(echo $l | sed 's,/etc/,/etc/static/,')"
         f=/etc/static/''${l#/etc/}
         if [ "$(readlink $l)" = "$f" -a ! -e "$(readlink -f $l)" ]; then
