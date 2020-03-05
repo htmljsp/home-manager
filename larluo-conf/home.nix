@@ -63,9 +63,16 @@
     pkgs.pandoc
     pkgs.privoxy
 
+    # pkgs.apacheKa
     pkgs.kafkacat
+    pkgs.redis
+    pkgs.postgresql_11
+    # pkgs.mysql80
+    pkgs.mysql57
+    pkgs.elasticsearch7
+    pkgs.neo4j
     # pkgs.apacheKafka
-    (pkgs.postgresql.overrideAttrs(old: { meta.priority = 0; }))
+
     pkgs.minio
     pkgs.minio-client
     pkgs.neo4j
@@ -80,13 +87,21 @@
   services.redis = {
    enable = true ;
    dataDir = "/opt/nix-module/data/redis" ;
-   unixSocket = "/opt/nix-module/run/redis.socket" ;
+   unixSocket = "/opt/nix-module/run/redis.sock" ;
   } ;
 
   services.postgresql = { 
     enable = true ; 
-    package = pkgs.postgresql ;
+    package = pkgs.postgresql_11 ;
     dataDir = "/opt/nix-module/data/postgresql" ;
+  } ;
+
+  services.mysql = {
+    enable = true ;
+    # package = pkgs.mysql80 ;
+    package = pkgs.mysql57 ;
+    dataDir = "/opt/nix-module/data/mysql" ;
+    unixSocket = "/opt/nix-module/run/mysql.sock" ;
   } ;
 
   services.privoxy = {

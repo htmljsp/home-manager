@@ -170,9 +170,13 @@ let
     (loadModule ./system/etc/etc.nix {})
     (loadModule ./system/boot/launchd-module/default.nix {})
     (loadModule ./system/boot/launchd.nix {})
+    (loadModule ./services/networking/privoxy.nix {})
     (loadModule ./services/databases/redis.nix {})
     (loadModule ./services/databases/postgresql.nix {})
-    (loadModule ./services/networking/privoxy.nix {})
+    (loadModule ./services/databases/mysql.nix {})
+    # (loadModule ./services/databases/elasticsearch.nix {})
+    # (loadModule ./services/databases/neo4j.nix {})
+
   ];
 
   modules = map (getAttr "file") (filter (getAttr "condition") allModules);
