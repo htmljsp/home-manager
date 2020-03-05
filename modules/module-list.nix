@@ -175,7 +175,7 @@ let
     (loadModule ./services/databases/postgresql.nix {})
     (loadModule ./services/databases/mysql.nix {})
     (loadModule ./services/search/elasticsearch.nix {})
-    # (loadModule ./services/databases/neo4j.nix {})
+    (loadModule ./services/databases/neo4j.nix {})
 
   ];
 

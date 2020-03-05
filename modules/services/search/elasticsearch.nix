@@ -211,11 +211,7 @@ in {
       in 
         { path = [ cfg.package ];
           script = ''
-            # Initialise the database.
-            if ! test -e ${cfg.dataDir}/preStart; then
-              ${preStart}            
-              touch ${cfg.dataDir}/preStart
-            fi
+            ${preStart}            
             exec ${cfg.package}/bin/elasticsearch ${toString cfg.extraCmdLineOptions}
           '';
         

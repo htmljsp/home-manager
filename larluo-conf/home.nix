@@ -24,6 +24,7 @@
     pkgs.gnused
     pkgs.less
     pkgs.gawk
+    pkgs.procps
     pkgs.cron
     pkgs.nix-bundle
 
@@ -85,7 +86,7 @@
   ];
 
   services.privoxy = {
-    enable = true ;
+    enable = false ;
     listenAddress = "0.0.0.0:8118" ;
     config = "forward-socks5 / 0.0.0.0:1080 ." ;
   } ;
@@ -116,9 +117,9 @@
     dataDir = "/opt/nix-module/data/elasticsearch" ;
   } ;
   
-  #services.neo4j = {
-  #  enable = true ;
-  #  package = pkgs.neo4j ;
-  #  dataDir = "/opt/nix-module/data/neo4j" ;
-  #} ;
+  services.neo4j = {
+    enable = true ;
+    package = pkgs.neo4j ;
+    directories.home = "/opt/nix-module/data/neo4j" ;
+  } ;
 }
