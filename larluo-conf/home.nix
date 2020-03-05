@@ -63,8 +63,6 @@
     pkgs.pandoc
     pkgs.privoxy
 
-    # pkgs.apacheKa
-    pkgs.kafkacat
     pkgs.redis
     pkgs.postgresql_11
     # pkgs.mysql80
@@ -72,6 +70,8 @@
     pkgs.elasticsearch7
     pkgs.neo4j
     # pkgs.apacheKafka
+    pkgs.confluent-platform
+    pkgs.kafkacat
 
     pkgs.minio
     pkgs.minio-client
@@ -83,6 +83,12 @@
     # pkgs.shadowsocks-libev
     pkgs.fish
   ];
+
+  services.privoxy = {
+    enable = true ;
+    listenAddress = "0.0.0.0:8118" ;
+    config = "forward-socks5 / 0.0.0.0:1080 ." ;
+  } ;
 
   services.redis = {
    enable = true ;
@@ -104,9 +110,15 @@
     unixSocket = "/opt/nix-module/run/mysql.sock" ;
   } ;
 
-  services.privoxy = {
+  services.elasticsearch = {
     enable = true ;
-    listenAddress = "0.0.0.0:8118" ;
-    config = "forward-socks5 / 0.0.0.0:1080 ." ;
+    package = pkgs.elasticsearch7 ;
+    dataDir = "/opt/nix-module/data/elasticsearch" ;
   } ;
+  
+  #services.neo4j = {
+  #  enable = true ;
+  #  package = pkgs.neo4j ;
+  #  dataDir = "/opt/nix-module/data/neo4j" ;
+  #} ;
 }
