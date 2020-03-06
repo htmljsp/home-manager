@@ -47,7 +47,7 @@
     pkgs.clang-tools
     pkgs.dhall
     pkgs.python38
-    # pkgs.vue
+    # pkgs.vue (no-darwin yet)
     pkgs.maven
 
     pkgs.tree
@@ -70,14 +70,15 @@
     pkgs.mysql57
     pkgs.elasticsearch7
     pkgs.neo4j
-    # pkgs.apacheKafka
+    pkgs.zookeeper
+    pkgs.apacheKafka
     pkgs.confluent-platform
     pkgs.kafkacat
 
     pkgs.minio
     pkgs.minio-client
     pkgs.neo4j
-    # pkgs.clickhouse (no-darwin)
+    # pkgs.clickhouse (no-darwin yet)
     pkgs.cassandra
 
     # pkgs.imagemagick
@@ -121,5 +122,10 @@
     enable = true ;
     package = pkgs.neo4j ;
     directories.home = "/opt/nix-module/data/neo4j" ;
+  } ;
+  services.zookeeper = {
+    enable = true ;
+    package = pkgs.zookeeper ;
+    dataDir = "/opt/nix-module/data/zookeeper" ;
   } ;
 }

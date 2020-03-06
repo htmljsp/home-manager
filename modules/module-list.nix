@@ -176,7 +176,7 @@ let
     (loadModule ./services/databases/mysql.nix {})
     (loadModule ./services/search/elasticsearch.nix {})
     (loadModule ./services/databases/neo4j.nix {})
-
+    (loadModule ./services/misc/zookeeper.nix {})
   ];
 
   modules = map (getAttr "file") (filter (getAttr "condition") allModules);
